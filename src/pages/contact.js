@@ -1,0 +1,121 @@
+import React, { useState, useEffect } from 'react';
+
+// Redux
+import { connect } from 'react-redux';
+import { getAllPosts } from '../redux/actions/dataActions';
+
+// Material
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
+
+//Comps
+import Subscribe from '../components/layout/Subscribe'
+import Footer from '../components/layout/Footer'
+
+const useStyles = makeStyles((theme) => ({
+	...theme.spreadThis,
+	contactForm: {
+		marginBottom: '2rem',
+		display: 'flex',
+    flexDirection: 'column'
+	},
+	buttonClass: {
+		width: '7.5rem',
+		height: '2.5rem',
+		padding: '1rem 2rem',
+		borderRadius: 0,
+		marginTop: '2rem'
+	},
+	textField: {
+    [theme.breakpoints.down('sm')]: {
+    	width: '100%'
+    }
+	}
+}));
+
+export function Contact(props) {
+
+  const theme = useTheme();
+  const classes = useStyles(props);
+
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [body, setBody] = useState("");
+
+	const handleSubmit = () => {
+		// do something
+	}
+
+  useEffect(() => {
+  	props.getAllPosts();
+		console.log(props)
+  }, []);
+
+	document.title = 'Contact Us | News | My Political Hub';
+
+	return (
+		<span>
+			<Container maxWidth="lg">
+			<Grid container style={{ margin: '5% auto 10%' }}>
+				<Grid xs={12} lg={8}>
+					<Typography variant="h4">Contact Us</Typography>
+					<br /><br />
+					<Typography variant="body1">You can reach us via phone, email and website. Or send us some message through our Contact Page.</Typography>
+					<br /><br />
+					<Typography variant="body2"><a style={{ color: 'black', textDecoration: 'none' }} href='tel:08088715745'>(+234) 808-871-5745</a></Typography>
+					<Typography variant="body2"><a style={{ color: 'black', textDecoration: 'none' }} href='tel:08135537811'>(+234) 813-553-7811</a></Typography>
+					<br />
+					<Typography variant="body2"><a style={{ color: 'black', textDecoration: 'none' }} href='mailto:info@mypoliticalhub.com'>info@mypoliticalhub.com</a></Typography>
+					<form className={classes.contactForm}>
+					  <TextField
+					  	color="secondary"
+					  	value={name}
+					  	onChange={e => setName(e.target.value)}
+					  	onClick={handleSubmit}
+					  	placeholder="Name*"
+					  	className={`textField ${classes.textField}`}
+					  	variant="outlined"
+				  	/>
+					  <TextField
+					  	color="secondary"
+					  	value={email}
+					  	onChange={e => setEmail(e.target.value)}
+					  	onClick={handleSubmit}
+					  	placeholder="Email*"
+					  	className={`textField ${classes.textField}`}
+					  	variant="outlined"
+				  	/>
+					  <TextField
+					  	color="secondary"
+					  	value={body}
+					  	onChange={e => setBody(e.target.value)}
+					  	onClick={handleSubmit}
+					  	multiline
+					  	rows={4}
+					  	placeholder="Contact Us*"
+					  	className={`textField ${classes.textField}`}
+					  	variant="outlined"
+				  	/>
+            <Button variant="outlined" className={classes.buttonClass}>Subscribe</Button>
+					</form>
+				</Grid>
+				<Subscribe />
+			</Grid>
+			</Container>
+			<Footer />
+		</span>
+	);
+}
+
+const mapStateToProps = state => ({
+  data: state.data,
+  UI: state.UI
+});
+
+const mapDispatchToProps = { getAllPosts };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);
