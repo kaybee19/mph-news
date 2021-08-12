@@ -53,7 +53,7 @@ export function Story(props) {
 
   const { postsid, topic, createdAt, postedBy, postImage, id, body, title, important, subTitle, link, commentCount } = props.data.post;
   const { loading } = props.UI;
-  document.title = `${title === undefined ? 'Story' : title} | News | My Political Hub`;
+//   document.title = `${title === undefined ? 'Story' : title} | News | My Political Hub`;
 
   const theme = useTheme();
   const classes = useStyles(props);

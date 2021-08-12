@@ -15,6 +15,7 @@ import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 //Comps
 import Subscribe from '../components/layout/Subscribe'
 import Footer from '../components/layout/Footer'
+import { Helmet } from 'react-helmet';
 
 const useStyles = makeStyles((theme) => ({
 	...theme.spreadThis,
@@ -55,10 +56,11 @@ export function Contact(props) {
 		console.log(props)
   }, []);
 
-	document.title = 'Contact Us | News | My Political Hub';
+	// document.title = 'Contact Us | News | My Political Hub';
 
 	return (
 		<span>
+			<Helmet title={'Contact Us | News | My Political Hub'}/>
 			<Container maxWidth="lg">
 			<Grid container style={{ margin: '5% auto 10%' }}>
 				<Grid xs={12} lg={8}>

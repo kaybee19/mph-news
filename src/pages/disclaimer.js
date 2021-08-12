@@ -7,15 +7,17 @@ import Typography from '@material-ui/core/Typography';
 //Comps
 import Subscribe from '../components/layout/Subscribe'
 import Footer from '../components/layout/Footer'
+import { Helmet } from 'react-helmet';
 
 export default class disclaimer extends React.Component {
 
 	render() {
 
-		document.title = 'Our Terms | News | My Political Hub';
+		// document.title = 'Contact Us | News | My Political Hub';
 
 		return (
 			<span>
+				<Helmet title={'Contact Us | News | My Political Hub'}/>
 				<Container maxWidth="lg">
 				<Grid container style={{ margin: '5% auto 10%' }}>
 					<Grid xs={12} lg={8}>
