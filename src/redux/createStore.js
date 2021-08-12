@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore as reduxCreateStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
 
 import userReducer from './reducers/userReducer';
@@ -20,8 +20,8 @@ const reducers = combineReducers({
 
 const windowGlobal = typeof window !== 'undefined' && window;
 
-const devtools = typeof window !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
+const devtools = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
 
-const createStore = () => reduxCreateStore(reducers, initializeState, compose(applyMiddleware(thunk), devtools));
+const preloadedState = () => createStore(reducers, initializeState, compose(applyMiddleware(thunk), devtools));
 
-export default createStore;
+export default preloadedState;

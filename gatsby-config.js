@@ -1,7 +1,9 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "mph-news",
+    siteUrl: "https://news.mypoliticalhub.com",
+    title: "My Political Hub News",
+    author: "BLK",
+    keywords: ["Nigeria", "News", "Politics", "Hub"]
   },
   plugins: [
     "gatsby-plugin-gatsby-cloud",
@@ -46,5 +48,6 @@ module.exports = {
         windowKey: '__PRELOADED_STATE__',
       },
     },
+    "gatsby-plugin-layout"
   ],
 };
