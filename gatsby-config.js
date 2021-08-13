@@ -48,6 +48,7 @@ module.exports = {
         windowKey: '__PRELOADED_STATE__',
       },
     },
-    "gatsby-plugin-layout"
+    "gatsby-plugin-layout",
+    `gatsby-plugin-netlify`
   ],
 };
