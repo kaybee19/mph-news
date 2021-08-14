@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Helvetica';
+  src: url('util/fonts/helvetica.ttf');
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  font-weight: bold;
+  src: url('util/fonts/helvetica-bold.ttf');
+}
+
+@font-face {
+  font-family: 'Helvetica Light';
+  src: url('util/fonts/helvetica-light.ttf');
+}
+
+@font-face {
+  font-family: 'Helvetica Compressed';
+  src: url('util/fonts/helvetica-compressed.otf');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('util/fonts/OpenSans-Bold.ttf');
+}
+
+body {
+  margin: 0;
+  font-family: 'Helvetica'!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
