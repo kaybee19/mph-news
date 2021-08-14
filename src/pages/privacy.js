@@ -11,6 +11,17 @@ import SEO from "../components/utils/SEO"
 
 export default class privacy extends React.Component {
 
+	// componentDidMount = () => {
+	// 	let el = document.createElement('style');
+	// 	el.setAttribute("name", "description");
+	// 	el.setAttribute("content", "My Political Hub: Terms of Use and Privacy Policies")
+	// 	document.head.prepend(el)
+
+	// 	let title = document.head.getElementsByTagName('title')[0]
+	// 	title.innerHTML = 'Our Terms | News | My Political Hub';
+	// 	document.head.prepend(title);
+	// }
+
 	render() {
 
 		// document.title = 'Our Terms | News | My Political Hub';

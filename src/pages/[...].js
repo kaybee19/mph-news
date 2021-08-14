@@ -5,8 +5,8 @@ import StoryPage from "../components/story/StoryPage"
 const App = () => {
   return (
     <div>
-        <Router basepath="/">
-        <StoryPage path="/story/*"/>
+      <Router basepath="/">
+        <StoryPage path="/story/*" />
       </Router>
     </div>
   )

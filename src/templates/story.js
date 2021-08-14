@@ -40,18 +40,20 @@ const useStyles = makeStyles((theme) => ({
 
 export function Story(props) {
 
+	const { post } = props.pageContext;
+
   const [story, setStory] = useState(props.location.pathname.slice(7))
 
-  useEffect(() => {
-  	axios.get(`/post/${story}`)
-  	.then((res) => {
-  		props.getTopic(res.data.topic)
-  	})
-  	.catch((err) => console.log(err));
-  	props.getPost(story);
-  }, []);
+//   useEffect(() => {
+//   	axios.get(`/post/${story}`)
+//   	.then((res) => {
+//   		props.getTopic(res.data.topic)
+//   	})
+//   	.catch((err) => console.log(err));
+//   	props.getPost(story);
+//   }, []);
 
-  const { postsid, topic, createdAt, postedBy, postImage, id, body, title, important, subTitle, link, commentCount } = props.data.post;
+  const { postsid, topic, createdAt, postedBy, postImage, id, body, title, important, subTitle, link, commentCount } = post;
   const { loading } = props.UI;
 //   document.title = `${title === undefined ? 'Story' : title} | News | My Political Hub`;
 
@@ -71,13 +73,13 @@ export function Story(props) {
 			<Container maxWidth='lg'>
 				<Grid className={classes.headerCont} container>
 					<Grid style={{ position: 'relative' }} item xs={12} lg={8}>
-						{ loading ? <Loading /> : <StoryMap story={props.data.post} /> }
+						{ loading ? <Loading /> : <StoryMap story={post} /> }
 					</Grid>
 					<Grid item xs={12} lg={4}>
 						{ matches ? (
 							<span>
 								{readMarkup}
-								<Comments story={props.data.post} />
+								<Comments story={post} />
 							</span>
 							) : null
 						}
@@ -86,12 +88,12 @@ export function Story(props) {
 				</Grid>
 			</Container>
 
-			{ loading ? null : ( !matches ? <BodyMark story={props.data.post} /> : null ) }
+			{ loading ? null : ( !matches ? <BodyMark story={post} /> : null ) }
 
 			{ !matches ? (
 				<span>
 					{readMarkup}
-					<Comments story={props.data.post} />
+					<Comments story={post} />
 				</span>
 				) : null
 			}

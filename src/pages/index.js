@@ -19,6 +19,7 @@ import PopularPoliticians from '../components/home/PopularPoliticians'
 import VideoNews from '../components/home/VideoNews'
 import Loading from '../components/layout/Loading'
 import Footer from '../components/layout/Footer'
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles((theme) => ({
 	...theme.spreadThis,
@@ -31,57 +32,62 @@ const useStyles = makeStyles((theme) => ({
 
 export function Home(props) {
 
-  useEffect(() => {
+	useEffect(() => {
 
-	  let nav = document.getElementById('navBar');
-	  if (nav !== null) {
-	  	nav.style.display = 'block'
-	  }
+		let nav = document.getElementById('navBar');
+		if (nav !== null) {
+			nav.style.display = 'block'
+		}
 
-  	props.getAllPosts();
+		props.getAllPosts();
 		document.title = 'MPH News | My Political Hub';
 		console.log(props)
-  }, []);
+	}, []);
 
-  const { loading } = props.data;
+	const { loading } = props.data;
 
-  const theme = useTheme();
-  const classes = useStyles(props);
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+	const theme = useTheme();
+	const classes = useStyles(props);
+	const matches = useMediaQuery(theme.breakpoints.up('md'));
 
 	return (
 		<span>
-		{
-			loading ? (
-				<div className={classes.loader}>
-					<Loading />
-				</div>
+			<Helmet meta={[
+				{
+					name: `description`,
+					content: "This is home",
+				},]} />
+			{
+				loading ? (
+					<div className={classes.loader}>
+						<Loading />
+					</div>
 				) : (
-				<span>
-					<Container style={ !matches ? { padding: 0 } : null } maxWidth="lg">
-						<Grid container>
-							<LatestNews news={props.data.posts} />
-							<RecentNews news={props.data.posts} />
-							<hr className={`${classes.hrTop} ${classes.hrHome}`} />
-							<TopicGrid news={props.data.posts} />
-							<hr className={`${classes.hrTop} ${classes.hrHome}`} />
-							<PopularPoliticians />
-							<hr className={`${classes.hrTop} ${classes.hrHome}`} />
-							<CustomNews news={props.data.posts} />
-						</Grid>
-				  </Container>
-				  <VideoNews news={props.data.posts} />
-			  </span>
-			)
-		}
-		  <Footer />
-	  </span>
+					<span>
+						<Container style={!matches ? { padding: 0 } : null} maxWidth="lg">
+							<Grid container>
+								<LatestNews news={props.data.posts} />
+								<RecentNews news={props.data.posts} />
+								<hr className={`${classes.hrTop} ${classes.hrHome}`} />
+								<TopicGrid news={props.data.posts} />
+								<hr className={`${classes.hrTop} ${classes.hrHome}`} />
+								<PopularPoliticians />
+								<hr className={`${classes.hrTop} ${classes.hrHome}`} />
+								<CustomNews news={props.data.posts} />
+							</Grid>
+						</Container>
+						<VideoNews news={props.data.posts} />
+					</span>
+				)
+			}
+			<Footer />
+		</span>
 	);
 }
 
 const mapStateToProps = state => ({
-  data: state.data,
-  UI: state.UI
+	data: state.data,
+	UI: state.UI
 });
 
 const mapDispatchToProps = { getAllPosts, clearErrors };
